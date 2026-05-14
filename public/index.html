@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart Doctor Connect AI – Pakistan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --em950:#022c22;--em900:#064e3b;--em800:#065f46;
+  --em700:#047857;--em600:#059669;--em500:#10b981;
+  --em400:#34d399;--em200:#a7f3d0;--em100:#d1fae5;--em50:#ecfdf5;
+  --sl900:#0f172a;--sl800:#1e293b;--sl700:#334155;
+  --sl600:#475569;--sl500:#64748b;--sl400:#94a3b8;
+  --sl300:#cbd5e1;--sl200:#e2e8f0;--sl100:#f1f5f9;--sl50:#f8fafc;
+  --am400:#fbbf24;--am500:#f59e0b;
+  --rd600:#dc2626;--rd50:#fef2f2;
+  --bl50:#eff6ff;--bl600:#2563eb;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:24px;
+}
+
+body{font-family:'Sora',sans-serif;background:var(--sl100);color:var(--sl900);min-height:100vh;line-height:1.6;}
+
+/* HEADER */
+header{background:var(--em950);padding:0 1.5rem;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(255,255,255,.06);}
+.header-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:1.2rem;font-weight:600;color:#fff;text-decoration:none;}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--em600);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.logo em{color:var(--em400);font-style:normal;}
+.badge{background:rgba(52,211,153,.15);color:var(--em400);border:1px solid rgba(52,211,153,.25);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;}
+
+/* HERO */
+.hero{background:var(--em950);padding:3.5rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:52px;background:var(--sl100);clip-path:ellipse(55% 100% at 50% 100%);}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(52,211,153,.1);color:var(--em400);border:1px solid rgba(52,211,153,.2);font-size:12.5px;font-weight:500;padding:5px 14px;border-radius:20px;margin-bottom:1.25rem;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(1.9rem,5vw,3rem);font-weight:600;color:#fff;line-height:1.2;margin-bottom:.9rem;max-width:640px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--em400);font-style:normal;}
+.hero p{color:rgba(255,255,255,.55);font-size:.975rem;max-width:440px;margin:0 auto 2.25rem;font-weight:300;}
+
+/* SEARCH BAR */
+.search-bar{max-width:600px;margin:0 auto;display:flex;gap:8px;position:relative;z-index:10;}
+.search-bar input{flex:1;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r-md);padding:13px 18px;color:#fff;font-size:.95rem;font-family:'Sora',sans-serif;outline:none;transition:border-color .2s;}
+.search-bar input::placeholder{color:rgba(255,255,255,.38);}
+.search-bar input:focus{border-color:var(--em400);}
+.btn-hero{background:var(--em600);color:#fff;border:none;border-radius:var(--r-md);padding:13px 22px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;display:flex;align-items:center;gap:6px;transition:background .2s,transform .12s;white-space:nowrap;}
+.btn-hero:hover{background:var(--em700);}
+.btn-hero:active{transform:scale(.97);}
+.btn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.15);}
+.btn-ghost:hover{background:rgba(255,255,255,.14);color:#fff;}
+
+/* MAIN */
+.main{max-width:1140px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+
+/* SECTION CARD */
+.section-card{background:#fff;border-radius:var(--r-xl);border:1px solid var(--sl200);padding:1.75rem 2rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+
+/* TABS */
+.tabs{display:flex;gap:3px;background:var(--sl100);border:1px solid var(--sl200);border-radius:var(--r-lg);padding:4px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:110px;background:transparent;border:none;border-radius:var(--r-md);padding:9px 14px;font-size:.85rem;font-weight:500;color:var(--sl500);cursor:pointer;font-family:'Sora',sans-serif;transition:all .18s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.tab-btn.active{background:#fff;color:var(--em700);box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.tab-btn:hover:not(.active){background:rgba(0,0,0,.03);color:var(--sl800);}
+
+/* PANELS */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* FORMS */
+.form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;}
+.form-row.two{grid-template-columns:1fr 1fr;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:12px;font-weight:500;color:var(--sl500);text-transform:uppercase;letter-spacing:.4px;}
+.fg input,.fg select,.fg textarea{background:var(--sl50);border:1.5px solid var(--sl200);border-radius:var(--r-sm);padding:11px 14px;font-size:.9rem;font-family:'Sora',sans-serif;color:var(--sl900);outline:none;transition:border-color .18s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--em500);box-shadow:0 0 0 3px rgba(16,185,129,.1);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fg.full{grid-column:1/-1;}
+
+/* BUTTONS */
+.btn{padding:11px 22px;border:none;border-radius:var(--r-sm);font-size:.9rem;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;transition:all .18s;display:inline-flex;align-items:center;gap:7px;text-decoration:none;}
+.btn-primary{background:var(--em600);color:#fff;}
+.btn-primary:hover{background:var(--em700);}
+.btn-primary:active{transform:scale(.97);}
+.btn-outline{background:#fff;color:var(--sl700);border:1.5px solid var(--sl200);}
+.btn-outline:hover{border-color:var(--em500);color:var(--em700);}
+.btn-actions{display:flex;gap:10px;margin-top:1.25rem;flex-wrap:wrap;}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;padding:1.25rem 1.75rem;background:#fff;border:1px solid var(--sl200);border-radius:var(--r-lg);margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.filter-bar .fg{flex:1;min-width:160px;}
+.filter-bar .fg label{font-size:11.5px;}
+.filter-bar select{padding:9px 12px;font-size:.875rem;}
+
+/* RESULTS HEADER */
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;}
+.results-title{font-size:1.05rem;font-weight:600;color:var(--sl800);}
+.results-count{font-size:.8rem;font-weight:500;color:var(--em700);background:var(--em50);padding:4px 12px;border-radius:20px;}
+
+/* DOCTORS GRID */
+.doctors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.25rem;}
+
+/* DOCTOR CARD */
+.doctor-card{background:#fff;border-radius:var(--r-lg);border:1px solid var(--sl200);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;cursor:pointer;}
+.doctor-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12);}
+.card-top{background:var(--em950);padding:1.25rem 1.25rem 1rem;display:flex;align-items:flex-start;gap:14px;position:relative;}
+.avatar{width:52px;height:52px;border-radius:14px;background:var(--em700);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:#fff;border:2px solid rgba(255,255,255,.15);}
+.card-top-info{flex:1;min-width:0;}
+.doc-name{font-size:1rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.doc-spec{font-size:.8rem;color:var(--em400);font-weight:500;margin-top:2px;}
+.rating-badge{position:absolute;top:1.25rem;right:1.25rem;background:rgba(251,191,36,.15);color:var(--am400);border:1px solid rgba(251,191,36,.25);font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:20px;}
+.card-body{padding:1rem 1.25rem;flex:1;}
+.meta-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.9rem;}
+.chip{font-size:.75rem;font-weight:500;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:4px;}
+.chip-loc{background:var(--sl100);color:var(--sl600);}
+.chip-exp{background:var(--bl50);color:var(--bl600);}
+.chip-online{background:var(--em50);color:var(--em700);}
+.chip-physical{background:#fef9c3;color:#854d0e;}
+.chip-both{background:var(--em50);color:var(--em700);}
+.doc-bio{font-size:.83rem;color:var(--sl500);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-footer{padding:.9rem 1.25rem;border-top:1px solid var(--sl100);display:flex;gap:8px;}
+.btn-contact{flex:1;padding:9px 10px;border-radius:var(--r-sm);font-size:.82rem;font-weight:600;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .18s;cursor:pointer;border:none;font-family:'Sora',sans-serif;}
+.btn-email{background:var(--em50);color:var(--em800);border:1px solid var(--em200);}
+.btn-email:hover{background:var(--em100);}
+.btn-phone{background:var(--bl50);color:var(--bl600);border:1px solid #bfdbfe;}
+.btn-phone:hover{background:#dbeafe;}
+.btn-detail{background:var(--sl100);color:var(--sl700);border:1px solid var(--sl200);flex:0 0 auto;padding:9px 14px;}
+.btn-detail:hover{background:var(--sl200);}
+
+/* AI RESULTS */
+.ai-results{margin-top:1.5rem;}
+.ai-intro{background:var(--em50);border:1px solid var(--em200);border-radius:var(--r-md);padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:.875rem;color:var(--em800);display:flex;align-items:flex-start;gap:10px;}
+.ai-intro-icon{font-size:1.25rem;flex-shrink:0;}
+
+/* STATES */
+.empty-state{text-align:center;padding:3.5rem 1rem;grid-column:1/-1;}
+.empty-icon{font-size:3rem;margin-bottom:.75rem;}
+.empty-state h3{font-size:1.1rem;font-weight:600;color:var(--sl700);margin-bottom:.4rem;}
+.empty-state p{font-size:.875rem;color:var(--sl400);}
+.spinner-wrap{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;padding:3rem 1rem;gap:1rem;color:var(--sl400);font-size:.9rem;}
+.spinner{width:36px;height:36px;border:3px solid var(--sl200);border-top-color:var(--em500);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* TOAST */
+#toast-wrap{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;flex-direction:column;gap:8px;z-index:999;max-width:340px;}
+.toast{padding:.85rem 1.1rem;border-radius:var(--r-md);font-size:.875rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,.2);animation:slideUp .25s ease;display:flex;align-items:center;gap:8px;}
+.toast-success{background:var(--em800);color:#fff;}
+.toast-error{background:#7f1d1d;color:#fca5a5;}
+.toast-info{background:var(--sl800);color:#fff;}
+@keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal-box{background:#fff;border-radius:var(--r-xl);max-width:520px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);animation:popIn .2s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-head{background:var(--em950);padding:1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.modal-head-info{flex:1;}
+.modal-doc-name{font-size:1.25rem;font-weight:600;color:#fff;font-family:'Lora',serif;}
+.modal-doc-spec{font-size:.85rem;color:var(--em400);margin-top:3px;}
+.modal-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s;}
+.modal-close:hover{background:rgba(255,255,255,.2);}
+.modal-body{padding:1.5rem;}
+.modal-row{display:flex;align-items:flex-start;gap:10px;padding:.7rem 0;border-bottom:1px solid var(--sl100);font-size:.9rem;}
+.modal-row:last-child{border:none;}
+.modal-row-label{color:var(--sl400);min-width:120px;font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.3px;padding-top:1px;}
+.modal-row-val{color:var(--sl800);flex:1;}
+.modal-row-val a{color:var(--em700);text-decoration:none;font-weight:500;}
+.modal-row-val a:hover{text-decoration:underline;}
+.modal-actions{display:flex;gap:8px;padding:0 1.5rem 1.5rem;flex-wrap:wrap;}
+
+@media(max-width:600px){
+  .form-row.two{grid-template-columns:1fr;}
+  .search-bar{flex-direction:column;}
+  .btn-actions{flex-direction:column;}
+  .filter-bar{flex-direction:column;}
+  .doctors-grid{grid-template-columns:1fr;}
+  .section-card{padding:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <span class="logo-mark">🏥</span>
+      Smart<em>Doctor</em>
+    </a>
+    <span class="badge">100% FREE · Pakistan</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-pill">🤖 AI-Powered Recommendations</div>
+  <h1>Find the <em>right doctor</em><br/>for your symptoms</h1>
+  <p>Describe what you're feeling — our AI instantly matches you with the best doctors in Pakistan.</p>
+  <div class="search-bar">
+    <input type="text" id="heroSearch" placeholder="Search doctor, specialty, city…" />
+    <button class="btn-hero" onclick="quickSearch()">🔍 Search</button>
+    <button class="btn-hero btn-ghost" onclick="loadAllDoctors()">Show All</button>
+  </div>
+</section>
+
+<main class="main">
+
+  <div class="section-card">
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-search" onclick="switchTab('search')">🔍 Search</button>
+      <button class="tab-btn" id="tab-ai" onclick="switchTab('ai')">🤖 AI Recommendation</button>
+      <button class="tab-btn" id="tab-register" onclick="switchTab('register')">➕ Register Doctor</button>
+    </div>
+
+    <!-- SEARCH PANEL -->
+    <div class="panel active" id="panel-search">
+      <div class="form-row two">
+        <div class="fg">
+          <label>Search</label>
+          <input type="text" id="searchInput" placeholder="Name, specialization or city…" />
+        </div>
+      </div>
+      <div class="btn-actions">
+        <button class="btn btn-primary" onclick="searchDoctors()">🔍 Search Doctors</button>
+        <button class="btn btn-outline" onclick="loadAllDoctors()">Show All</button>
+      </div>
+    </div>
+
+    <!-- AI PANEL -->
+    <div class="panel" id="panel-ai">
+      <div class="form-row two">
+        <div class="fg">
+          <label>Your Symptoms</label>
+          <input type="text" id="symptoms" placeholder="e.g. fever, back pain, headache, skin allergy…" />
+        </div>
+        <div class="fg">
+          <label>Preferred City (optional)</label>
+          <input type="text" id="aiLocation" placeholder="e.g. Lahore, Karachi, Islamabad…" />
+        </div>
+      </div>
+      <div class="btn-actions">
+        <button class="btn btn-primary" onclick="getAIRecommendation()">🤖 Get AI Recommendation</button>
+      </div>
+      <div id="aiResultsArea"></div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="panel" id="panel-register">
+      <div class="form-row">
+        <div class="fg"><label>Doctor Name *</label><input type="text" id="docName" placeholder="Full name" /></div>
+        <div class="fg"><label>Specialization *</label><input type="text" id="docSpec" placeholder="e.g. Cardiologist" /></div>
+        <div class="fg"><label>City *</label><input type="text" id="docLocation" placeholder="City" /></div>
+        <div class="fg">
+          <label>Consultation Type *</label>
+          <select id="docConsult">
+            <option>Online</option>
+            <option>Physical</option>
+            <option>Online/Physical</option>
+          </select>
+        </div>
+        <div class="fg"><label>Experience (years)</label><input type="number" id="docExp" placeholder="0" /></div>
+        <div class="fg"><label>Email</label><input type="email" id="docEmail" placeholder="doctor@email.com" /></div>
+        <div class="fg"><label>Phone</label><input type="text" id="docPhone" placeholder="+92-300-0000000" /></div>
+        <div class="fg full"><label>Bio</label><textarea id="docBio" placeholder="Short description of expertise…"></textarea></div>
+      </div>
+      <div class="btn-actions">
+        <button class="btn btn-primary" onclick="registerDoctor()">✅ Register Doctor</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="fg">
+      <label>Specialization</label>
+      <select id="filterSpec" onchange="applyFilters()">
+        <option value="All">All Specializations</option>
+        <option>Cardiologist</option>
+        <option>Dermatologist</option>
+        <option>Orthopedic</option>
+        <option>Neurologist</option>
+        <option>Pediatrician</option>
+        <option>General Practitioner</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>City</label>
+      <select id="filterLoc" onchange="applyFilters()">
+        <option value="All">All Cities</option>
+        <option>Lahore</option>
+        <option>Karachi</option>
+        <option>Islamabad</option>
+        <option>Rawalpindi</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Consultation</label>
+      <select id="filterConsult" onchange="applyFilters()">
+        <option value="All">All Types</option>
+        <option>Online</option>
+        <option>Physical</option>
+        <option>Online/Physical</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="results-header">
+    <span class="results-title" id="resultsTitle">All Doctors</span>
+    <span class="results-count" id="resultsCount">Loading…</span>
+  </div>
+
+  <div class="doctors-grid" id="doctorsContainer">
+    <div class="spinner-wrap"><div class="spinner"></div><span>Loading doctors…</span></div>
+  </div>
+
+</main>
+
+<div id="toast-wrap"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="doctorModal" onclick="onOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-head">
+      <div class="modal-head-info">
+        <div class="modal-doc-name" id="modalName"></div>
+        <div class="modal-doc-spec" id="modalSpec"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<script>
+const API = window.location.origin + '/api';
+
+/* ── TABS ── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+/* ── TOAST ── */
+function toast(msg, type) {
+  type = type || 'info';
+  const wrap = document.getElementById('toast-wrap');
+  const t = document.createElement('div');
+  t.className = 'toast toast-' + type;
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(function() { t.remove(); }, 4000);
+}
+
+/* ── LOAD ALL ── */
+async function loadAllDoctors() {
+  showSpinner();
+  document.getElementById('resultsTitle').textContent = 'All Doctors';
+  try {
+    const res = await fetch(API + '/doctors');
+    if (!res.ok) throw new Error('Server error');
+    const doctors = await res.json();
+    displayDoctors(doctors);
+  } catch (e) {
+    showConnError();
+  }
+}
+
+/* ── HERO SEARCH ── */
+function quickSearch() {
+  const q = document.getElementById('heroSearch').value.trim();
+  if (!q) { loadAllDoctors(); return; }
+  document.getElementById('searchInput').value = q;
+  switchTab('search');
+  searchDoctors();
+}
+
+/* ── SEARCH ── */
+async function searchDoctors() {
+  const q = document.getElementById('searchInput').value.trim();
+  if (!q) { loadAllDoctors(); return; }
+  showSpinner();
+  document.getElementById('resultsTitle').textContent = 'Results for "' + q + '"';
+  try {
+    const res = await fetch(API + '/doctors/search/' + encodeURIComponent(q));
+    const doctors = await res.json();
+    displayDoctors(doctors, 'No results for "' + q + '"');
+  } catch (e) {
+    showConnError();
+  }
+}
+
+/* ── FILTERS ── */
+async function applyFilters() {
+  const spec = document.getElementById('filterSpec').value;
+  const loc  = document.getElementById('filterLoc').value;
+  const cons = document.getElementById('filterConsult').value;
+  showSpinner();
+  document.getElementById('resultsTitle').textContent = 'Filtered Results';
+  try {
+    const res = await fetch(API + '/doctors/filter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ specialization: spec, location: loc, consultationType: cons })
+    });
+    const doctors = await res.json();
+    displayDoctors(doctors, 'No doctors match these filters');
+  } catch (e) {
+    showConnError();
+  }
+}
+
+/* ── AI RECOMMENDATION ──
+   Hits /api/recommend-doctor → gets IDs → fetches full doctor objects → shows cards
+*/
+async function getAIRecommendation() {
+  const symptoms = document.getElementById('symptoms').value.trim();
+  const location = document.getElementById('aiLocation').value.trim();
+
+  if (!symptoms) {
+    toast('Write Symptoms.', 'error');
+    return;
+  }
+
+  const area = document.getElementById('aiResultsArea');
+  area.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><span>AI Analyzing…</span></div>';
+
+  try {
+    const res = await fetch(API + '/recommend-doctor', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symptoms: symptoms, location: location })
+    });
+
+    if (!res.ok) throw new Error('Server ' + res.status);
+    const data = await res.json();
+
+    if (!data.recommendations || data.recommendations.length === 0) {
+      area.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--sl400);font-size:.9rem;">Dont Found any Recomendation, Please Try another Symtoms.</div>';
+      return;
+    }
+
+    /* Fetch full doctor details for each recommendation */
+    const fullDoctors = await Promise.all(
+      data.recommendations.map(async function(r) {
+        try {
+          const dr = await fetch(API + '/doctors/' + r.id);
+          return dr.ok ? await dr.json() : null;
+        } catch(err) { return null; }
+      })
+    );
+    const valid = fullDoctors.filter(Boolean);
+
+    const specLabel = data.matchedSpecializations ? data.matchedSpecializations.join(', ') : '';
+
+    area.innerHTML =
+      '<div class="ai-results">' +
+        '<div class="ai-intro">' +
+          '<span class="ai-intro-icon">🤖</span>' +
+          '<div><strong>AI Recommendation for </strong> — "' + symptoms + '"'
+          (specLabel ? '<br/><span style="font-size:.8rem;opacity:.8;">Matched: ' + specLabel + '</span>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="doctors-grid" id="aiGrid"></div>' +
+      '</div>';
+
+    const grid = document.getElementById('aiGrid');
+    if (valid.length === 0) {
+      grid.innerHTML = '<div style="text-align:center;padding:1.5rem;color:var(--sl400);">Cant Load Doctor details.</div>';
+    } else {
+      grid.innerHTML = valid.map(function(d) { return doctorCard(d); }).join('');
+    }
+
+    /* Also push to main grid */
+    displayDoctors(valid);
+    document.getElementById('resultsTitle').textContent = 'AI Recommended Doctors';
+
+  } catch (e) {
+    area.innerHTML = '<div style="padding:1rem;background:var(--rd50);border-radius:8px;color:var(--rd600);font-size:.875rem;">❌ Server se connect nahi ho saka. npm start check karein.</div>';
+    console.error(e);
+  }
+}
+
+/* ── REGISTER ── */
+async function registerDoctor() {
+  const name  = document.getElementById('docName').value.trim();
+  const spec  = document.getElementById('docSpec').value.trim();
+  const loc   = document.getElementById('docLocation').value.trim();
+  const cons  = document.getElementById('docConsult').value;
+  const exp   = document.getElementById('docExp').value;
+  const email = document.getElementById('docEmail').value.trim();
+  const phone = document.getElementById('docPhone').value.trim();
+  const bio   = document.getElementById('docBio').value.trim();
+
+  if (!name || !spec || !loc) {
+    toast('Name, specialization and City Required.', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch(API + '/doctors', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, specialization: spec, location: loc, consultationType: cons, experience: exp, email: email, phone: phone, bio: bio })
+    });
+    if (res.ok) {
+      toast('Doctor successfully registered!', 'success');
+      ['docName','docSpec','docLocation','docEmail','docPhone','docExp','docBio'].forEach(function(id){ document.getElementById(id).value = ''; });
+      setTimeout(loadAllDoctors, 800);
+    } else {
+      toast('Registration fail. Try Agian.', 'error');
+    }
+  } catch(e) {
+    toast('Server error. Check Connection.', 'error');
+  }
+}
+
+/* ── DISPLAY DOCTORS ── */
+function displayDoctors(doctors, emptyMsg) {
+  const container = document.getElementById('doctorsContainer');
+  const count = doctors ? doctors.length : 0;
+  document.getElementById('resultsCount').textContent = count + ' doctor' + (count !== 1 ? 's' : '');
+
+  if (!doctors || doctors.length === 0) {
+    container.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="empty-icon">🏥</div>' +
+        '<h3>' + (emptyMsg || 'No doctors found') + '</h3>' +
+        '<p>Adjust the Search or Filters.</p>' +
+      '</div>';
+    return;
+  }
+  container.innerHTML = doctors.map(function(d) { return doctorCard(d); }).join('');
+}
+
+/* ── DOCTOR CARD ── */
+function doctorCard(d) {
+  var initials = (d.name || '?').split(' ').map(function(w){ return w[0]; }).slice(0,2).join('').toUpperCase();
+  var chipClass = 'chip-online';
+  var consIcon  = '💻';
+  var t = (d.consultationType || '').toLowerCase();
+  if (t.indexOf('physical') > -1 && t.indexOf('online') > -1) { chipClass = 'chip-both'; consIcon = '🔀'; }
+  else if (t.indexOf('physical') > -1) { chipClass = 'chip-physical'; consIcon = '🏥'; }
+
+  var emailBtn = d.email
+    ? '<a class="btn-contact btn-email" href="https://mail.google.com/mail/?view=cm&to=' + encodeURIComponent(d.email) + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">✉️ Gmail</a>'
+    : '';
+  var phoneBtn = d.phone
+    ? '<a class="btn-contact btn-phone" href="tel:' + d.phone + '" onclick="event.stopPropagation()">📞 Call</a>'
+    : '';
+
+  return '<div class="doctor-card" onclick="viewDoctor(' + d.id + ')">' +
+    '<div class="card-top">' +
+      '<div class="avatar">' + initials + '</div>' +
+      '<div class="card-top-info">' +
+        '<div class="doc-name">' + (d.name || '') + '</div>' +
+        '<div class="doc-spec">' + (d.specialization || '') + '</div>' +
+      '</div>' +
+      '<div class="rating-badge">★ ' + Number(d.rating || 0).toFixed(1) + '</div>' +
+    '</div>' +
+    '<div class="card-body">' +
+      '<div class="meta-chips">' +
+        '<span class="chip chip-loc">📍 ' + (d.location || '') + '</span>' +
+        '<span class="chip chip-exp">🩺 ' + (d.experience || 0) + ' yrs</span>' +
+        '<span class="chip ' + chipClass + '">' + consIcon + ' ' + (d.consultationType || '') + '</span>' +
+      '</div>' +
+      '<div class="doc-bio">' + (d.bio || 'Professional healthcare provider.') + '</div>' +
+    '</div>' +
+    '<div class="card-footer" onclick="event.stopPropagation()">' +
+      emailBtn +
+      phoneBtn +
+      '<button class="btn-contact btn-detail" onclick="event.stopPropagation();viewDoctor(' + d.id + ')">Details</button>' +
+    '</div>' +
+  '</div>';
+}
+
+/* ── VIEW DOCTOR MODAL ── */
+async function viewDoctor(id) {
+  try {
+    const res = await fetch(API + '/doctors/' + id);
+    if (!res.ok) throw new Error();
+    const d = await res.json();
+
+    document.getElementById('modalName').textContent = d.name;
+    document.getElementById('modalSpec').textContent = d.specialization;
+
+    var rows = '';
+    rows += '<div class="modal-row"><span class="modal-row-label">Location</span><span class="modal-row-val">📍 ' + (d.location || '—') + '</span></div>';
+    rows += '<div class="modal-row"><span class="modal-row-label">Experience</span><span class="modal-row-val">🩺 ' + (d.experience || 0) + ' years</span></div>';
+    rows += '<div class="modal-row"><span class="modal-row-label">Rating</span><span class="modal-row-val">★ ' + Number(d.rating || 0).toFixed(1) + ' / 5.0</span></div>';
+    rows += '<div class="modal-row"><span class="modal-row-label">Consultation</span><span class="modal-row-val">' + (d.consultationType || '—') + '</span></div>';
+    rows += '<div class="modal-row"><span class="modal-row-label">Bio</span><span class="modal-row-val">' + (d.bio || '—') + '</span></div>';
+    if (d.email) rows += '<div class="modal-row"><span class="modal-row-label">Email</span><span class="modal-row-val"><a href="https://mail.google.com/mail/?view=cm&to=' + encodeURIComponent(d.email) + '" target="_blank" rel="noopener">' + d.email + '</a></span></div>';
+    if (d.phone) rows += '<div class="modal-row"><span class="modal-row-label">Phone</span><span class="modal-row-val"><a href="tel:' + d.phone + '">' + d.phone + '</a></span></div>';
+
+    document.getElementById('modalBody').innerHTML = rows;
+
+    var actions = '';
+    if (d.email) actions += '<a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&to=' + encodeURIComponent(d.email) + '" target="_blank" rel="noopener">✉️ Gmail mein Email</a>';
+    if (d.phone) actions += '<a class="btn btn-outline" href="tel:' + d.phone + '">📞 Call Doctor</a>';
+    actions += '<button class="btn btn-outline" onclick="closeModal()">Close</button>';
+    document.getElementById('modalActions').innerHTML = actions;
+
+    document.getElementById('doctorModal').classList.add('active');
+  } catch(e) {
+    toast('Cannot Load Doctor details.', 'error');
+  }
+}
+
+function closeModal() { document.getElementById('doctorModal').classList.remove('active'); }
+function onOverlayClick(e) { if (e.target === document.getElementById('doctorModal')) closeModal(); }
+
+/* ── HELPERS ── */
+function showSpinner() {
+  document.getElementById('doctorsContainer').innerHTML = '<div class="spinner-wrap"><div class="spinner"></div><span>Loading…</span></div>';
+  document.getElementById('resultsCount').textContent = '…';
+}
+
+function showConnError() {
+  document.getElementById('doctorsContainer').innerHTML =
+    '<div class="empty-state">' +
+      '<div class="empty-icon">⚠️</div>' +
+      '<h3> Cannot Connect to Server</h3>' +
+      '<p>Run <strong>npm start</strong> in terminal & then refresh it.</p>' +
+    '</div>';
+  toast('Server connection fail, please check npm start.', 'error');
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('heroSearch').addEventListener('keypress', function(e){ if(e.key==='Enter') quickSearch(); });
+  document.getElementById('searchInput').addEventListener('keypress', function(e){ if(e.key==='Enter') searchDoctors(); });
+  document.getElementById('symptoms').addEventListener('keypress', function(e){ if(e.key==='Enter') getAIRecommendation(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+  loadAllDoctors();
+});
+</script>
+</body>
+</html>
