@@ -44,8 +44,8 @@ Follow these steps to run the project locally on your machine:
    ```bash
    npm run dev
 
-👨‍💻 Author
-Abdul Wahid AI Student & Developer Focusing on AI/ML,
+👨‍💻 Author:
+    Abdul Wahid, AI Student & Developer Focusing on AI/ML,
  Data Structures, and Problem Solving.
     "Empowering healthcare through the lens of Machine Learning." 🩺💡
 
